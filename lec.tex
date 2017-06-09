@@ -38,9 +38,11 @@
 \begin{document}
 	\maketitle
 	
+	(All rings are commutative with unit.)
+	
 	\begin{definition*}
-		Let $R$ be a ring with unit.
-		A (commutative one-dimensional) \emph{formal group law} over $R$ is an element of $F\left(x,y\right) \in R\left[\left[x\right]\right]$, such that:
+		Let $R$ be a ring.
+		A (commutative one-dimensional) \emph{formal group law} over $R$ is an element $F\left(x,y\right) \in R\left[\left[x\right]\right]$, such that:
 		\begin{enumerate}
 			\item $F\left(x,0\right) = x = F\left(0,x\right)$
 			\item $F\left(x,y\right)=F\left(y,x\right)$ (commutativity)
@@ -49,7 +51,7 @@
 	\end{definition*}
 
 	\begin{remark*}
-		Sometimes the notation $x +_F y = F\left(x,y\right)$ is useful.
+		The notation $x +_F y = F\left(x,y\right)$ is convenient sometimes.
 	\end{remark*}
 
 	\begin{example*}
@@ -60,7 +62,6 @@
 		The multiplicative formal group law, $F_m\left(x,y\right) = x+y+uxy$ for some unit $u\in R$, and specifically $F_m\left(x,y\right) = x+y+xy$.
 	\end{example*}
 
-	\todo{Do we need this?}
 	\begin{lemma*}
 		$p\left(x\right) \in R\left[\left[x\right]\right]$ is (multiplicatively) invertible if and only if $p\left(0\right) \in R$ is invertible.
 	\end{lemma*}
@@ -110,7 +111,7 @@
 	\end{definition*}
 
 	\begin{theorem*}
-		A formal group law over a ring in which all $0 \neq n \in \mbb{Z}$ are invertible, has a logarithm.
+		A formal group law over a $\mbb{Q}$-algebra has a logarithm.
 	\end{theorem*}
 
 	\begin{proof}
