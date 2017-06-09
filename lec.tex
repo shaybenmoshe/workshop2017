@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsthm}
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2cm]{geometry}
+%\usepackage[papersize={11.4cm,8.5cm},top=0.3cm,bottom=0.3cm,left=0.3cm,right=0.3cm]{geometry}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.6em}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{claim*}{Claim}
+
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{example*}{Example}
+
+\newcommand{\ncmd}{\newcommand}
+
+\ncmd{\mbb}[1]{\mathbb{#1}}
+\ncmd{\mrm}[1]{\mathrm{#1}}
+\ncmd{\dd}[1]{\mrm{d}#1}
+
+%\ncmd{\todo}[1]{}
+\ncmd{\todo}[1]{\textbf{TODO #1}}
+
+\title{The Algebraic Properties of Formal Group Laws}
+\author{Shay Ben Moshe}
+\date{20/06/2017}
+
+\begin{document}
+	\maketitle
+	
+	\begin{definition*}
+		Let $R$ be a ring with unit.
+		A (commutative one-dimensional) \emph{formal group law} over $R$ is an element of $F\left(x,y\right) \in R\left[\left[x\right]\right]$, such that:
+		\begin{enumerate}
+			\item $F\left(x,0\right) = x = F\left(0,x\right)$
+			\item $F\left(x,y\right)=F\left(y,x\right)$ (commutativity)
+			\item $F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,x\right)\right)$ (associativity)
+		\end{enumerate}
+	\end{definition*}
+
+	\begin{remark*}
+		Sometimes the notation $x +_F y = F\left(x,y\right)$ is useful.
+	\end{remark*}
+
+	\begin{example*}
+		The additive formal group law, $F_a\left(x,y\right) = x+y$.
+	\end{example*}
+
+	\begin{example*}
+		The multiplicative formal group law, $F_m\left(x,y\right) = x+y+uxy$ for some unit $u\in R$, and specifically $F_m\left(x,y\right) = x+y+xy$.
+	\end{example*}
+
+	\todo{Do we need this?}
+	\begin{lemma*}
+		$p\left(x\right) \in R\left[\left[x\right]\right]$ is (multiplicatively) invertible if and only if $p\left(0\right) \in R$ is invertible.
+	\end{lemma*}
+	\begin{proof}
+		Let $p\left(x\right) = \sum a_n x^n$, and assume $q\left(x\right) = \sum b_n x^n \in R\left[\left[x\right]\right]$ is an inverse to $p$, i.e. $pq = 1$. 
+		By comparing coefficients it follows that $a_0 b_0 = 1$ (so the first part follows), and $\sum_{k=0}^n a_k b_{n-k} = 0$.
+		If $a_0$ is invertible then we can find a suitable $q$, by defining $b_0 = a_0^{-1}$, and $b_n = - a_0^{-1} \left(\sum_{k=1}^n a_k b_{n-k}\right)$ (so the second part follows).
+	\end{proof}
+
+	\begin{definition*}
+		An \emph{homomorphism} from $F$ to $G$, two formal group laws over $R$, is a $f \in R\left[\left[x\right]\right]$, such that:
+		\begin{enumerate}
+			\item $f\left(0\right) = 0$
+			\item $f\left(x +_F y\right) = f\left(x\right) +_G f\left(y\right)$
+		\end{enumerate}
+	\end{definition*}
+
+	\begin{claim*}
+		$f: F \to G$ is (compositionally) invertible (i.e. an isomorphism) if and only if $f'\left(0\right)$.
+	\end{claim*}
+	
+	\begin{proof}
+		It is easy to see the first implication.
+		If $f'\left(0\right) = 0$, we can show explicitly that there exists a unique $g$ such that $g\left(f\left(x\right)\right) = x$, and $g'\left(0\right) = \left(f'\left(0\right)\right)^{-1}$. From the very same claim, it follows that there exists an $h$ such that $h\left(g\left(x\right)\right) = x$, it follows that $h\left(x\right) = h\left(g\left(f\left(x\right)\right)\right) = f\left(x\right)$.
+	\end{proof}
+
+	\begin{definition*}
+		$f: F \to G$ is a \emph{strict isomorphism} if $f'\left(0\right)=1$.
+	\end{definition*}
+
+	\begin{example*}
+		The multiplicative formal group law is strictly isomorphic to the additive formal group law,
+		by $f\left(x\right) = u^{-1} \log \left(1+ux\right) = \sum_{k=1}^{\infty} \frac{\left(-u\right)^{k-1} x^k}{k}$:
+		\begin{align*}
+			f\left(F_m\left(x,y\right)\right)
+			&= u^{-1} \log \left(1+u F_m\left(x,y\right)\right)\\
+			&= u^{-1} \log \left(1+ux+uy+u^2 xy\right)\\
+			&= u^{-1} \log \left(1+ux\right)\left(1+uy\right)\\
+			&= u^{-1} \log \left(1+ux\right) + \log \left(1+uy\right)\\
+			&= F_a\left(f\left(x\right), f\left(y\right)\right)
+		\end{align*}
+		(Note that we don't need the $u^{-1}$ to get an isomorphism, but we do need it to get a strict isomorphism.)
+	\end{example*}
+
+	\begin{definition*}
+		A strict isomorphism from $F$ to $F_a$ is called a \emph{logarithm}.
+	\end{definition*}
+
+	\begin{theorem*}
+		A formal group law over a ring in which all $0 \neq n \in \mbb{Z}$ are invertible, has a logarithm.
+	\end{theorem*}
+
+	\begin{proof}
+		Let $F$ be such a formal group law, and denote $F_2 = \frac{\partial F}{\partial y}$.
+		We claim that the following is a logarithm:
+		$$ f\left(x\right) = \int_0^x \frac{\dd{t}}{F_2\left(t,0\right)} $$
+		This is well-defined since each $0 \neq n \in \mathbb{Z}$ is invertible.
+		We need to prove that
+		$f\left(F\left(x,y\right)\right) = F_a\left(f\left(x\right),f\left(y\right)\right)$,
+		i.e. that
+		$w\left(x,y\right) = f\left(F\left(x,y\right)\right) - f\left(x\right) - f\left(y\right)$ vanishes.
+		Denote it's coefficients by $w\left(x,y\right) = \sum c_{ij} x^i y^j$.
+		First, note that
+		\begin{align*}
+			w\left(x,0\right)
+			&= f\left(F\left(x,0\right)\right) - f\left(x\right) - f\left(0\right)\\
+			&= f\left(x\right) - f\left(x\right) - 0\\
+			&= 0
+		\end{align*}
+		and it follows that $c_{i0} = 0$.
+		If we prove that
+		\begin{align*}
+			0
+			&= \frac{\partial w}{\partial y}\\
+			&= f'\left(F\left(x,y\right)\right) F_2\left(x,y\right) - f'\left(y\right)\\
+			&= \frac{1}{F_2\left(F\left(x,y\right),0\right)} F_2\left(x,y\right) - \frac{1}{F_2\left(y,0\right)}
+		\end{align*}
+		then it follows that $j c_{ij} = 0$, and since each $0 \neq j \in \mathbb{Z}$ is invertible, $c_{ij} = 0, j > 0$, which finishes the proof.
+		Indeed, by associativity,
+		$F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,z\right)\right)$, differentiating w.r.t $z$ at $z=0$ we get,
+		$
+			F_2\left(F\left(x,y\right),0\right)
+			= F_2\left(x,y\right) F_2\left(y,0\right)
+		$
+		and the result follows.
+	\end{proof}
+
+\end{document}
