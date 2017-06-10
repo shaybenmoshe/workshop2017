@@ -45,14 +45,10 @@
 		A (commutative one-dimensional) \emph{formal group law} over $R$ is an element $F\left(x,y\right) \in R\left[\left[x\right]\right]$, such that:
 		\begin{enumerate}
 			\item $F\left(x,0\right) = x = F\left(0,x\right)$
-			\item $F\left(x,y\right)=F\left(y,x\right)$ (commutativity)
+			\item $F\left(x,y\right)=F\left(y,x\right)$ (commutativity) \todo{Do we need commutative?}
 			\item $F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,x\right)\right)$ (associativity)
 		\end{enumerate}
 	\end{definition*}
-
-	\begin{remark*}
-		The notation $x +_F y = F\left(x,y\right)$ is convenient sometimes.
-	\end{remark*}
 
 	\begin{example*}
 		The additive formal group law, $F_a\left(x,y\right) = x+y$.
@@ -75,7 +71,7 @@
 		An \emph{homomorphism} from $F$ to $G$, two formal group laws over $R$, is a $f \in R\left[\left[x\right]\right]$, such that:
 		\begin{enumerate}
 			\item $f\left(0\right) = 0$
-			\item $f\left(x +_F y\right) = f\left(x\right) +_G f\left(y\right)$
+			\item $f\left(F\left(x,y\right)\right) = G\left(f\left(x\right),f\left(y\right)\right)$
 		\end{enumerate}
 	\end{definition*}
 
@@ -116,21 +112,23 @@
 
 	\begin{proof}
 		Let $F$ be such a formal group law, and denote $F_2 = \frac{\partial F}{\partial y}$.
-		We claim that the following is a logarithm:
+		Since $F\left(x,y\right) = x+y+\cdots$, we know that $F_2\left(0,0\right) = 1$, thus it is (multiplicatively) invertible.
+		Since each $0 \neq n \in \mathbb{Z}$ is invertible, we can define the following:
 		$$ f\left(x\right) = \int_0^x \frac{\dd{t}}{F_2\left(t,0\right)} $$
-		This is well-defined since each $0 \neq n \in \mathbb{Z}$ is invertible.
+		We claim that it is a logarithm.
+		We already know that $f'\left(0\right) = F_2\left(0,0\right) = 1$.
 		We need to prove that
 		$f\left(F\left(x,y\right)\right) = F_a\left(f\left(x\right),f\left(y\right)\right)$,
-		i.e. that
+		or equivalently, that
 		$w\left(x,y\right) = f\left(F\left(x,y\right)\right) - f\left(x\right) - f\left(y\right)$ vanishes.
-		Denote it's coefficients by $w\left(x,y\right) = \sum c_{ij} x^i y^j$.
+		Denote the coefficients by $w\left(x,y\right) = \sum c_{ij} x^i y^j$.
 		First, note that
-		\begin{align*}
+		$
 			w\left(x,0\right)
-			&= f\left(F\left(x,0\right)\right) - f\left(x\right) - f\left(0\right)\\
-			&= f\left(x\right) - f\left(x\right) - 0\\
-			&= 0
-		\end{align*}
+			= f\left(F\left(x,0\right)\right) - f\left(x\right) - f\left(0\right)
+			= f\left(x\right) - f\left(x\right) - 0
+			= 0
+		$
 		and it follows that $c_{i0} = 0$.
 		If we prove that
 		\begin{align*}
@@ -139,7 +137,7 @@
 			&= f'\left(F\left(x,y\right)\right) F_2\left(x,y\right) - f'\left(y\right)\\
 			&= \frac{1}{F_2\left(F\left(x,y\right),0\right)} F_2\left(x,y\right) - \frac{1}{F_2\left(y,0\right)}
 		\end{align*}
-		then it follows that $j c_{ij} = 0$, and since each $0 \neq j \in \mathbb{Z}$ is invertible, $c_{ij} = 0, j > 0$, which finishes the proof.
+		it follows that $j c_{ij} = 0$, and since each $0 \neq j \in \mathbb{Z}$ is invertible, $c_{ij} = 0, j > 0$, which finishes the proof.
 		Indeed, by associativity,
 		$F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,z\right)\right)$, differentiating w.r.t $z$ at $z=0$ we get,
 		$
@@ -148,5 +146,39 @@
 		$
 		and the result follows.
 	\end{proof}
+
+	\begin{remark*}
+		The above theorem is not true over arbitrary rings.
+		
+		To see this, we define a notion, that will lead us to the concept of height.
+		Let $F$ be a formal group law over a ring $R$. We define $\left[n\right]_F \left(X\right) \in R\left[\left[X\right]\right]$ by recursion:
+		$$
+			\left[0\right]_F \left(X\right) = 0
+			\qquad
+			\left[n+1\right]_F \left(X\right) = F\left(X, \left[n\right]_F \left(X\right)\right)
+		$$
+		Clearly, for $f: F \to G$ we get
+		$
+			f\left(\left[n\right]_F \left(X\right)\right)
+			=
+			\left[n\right]_G \left(f\left(X\right)\right)
+		$.
+		
+		For $F_a$ we have $\left[n\right]_{F_a} \left(X\right) = nX$,
+		and by induction for $F_m$ we have $\left[n\right]_{F_a} \left(X\right) = \left(1+X\right)^n - 1$.
+		Consider them over a field of characteristic $p$, and assume that $f: F_m \to F_a$ is an homomorphism then
+		$$
+			0
+			=
+			\left[p\right]_{F_a} \left(f\left(X\right)\right)
+			=
+			f\left(\left[p\right]_{F_m} \left(X\right)\right)
+			=
+			f\left(\left(1+X\right)^p-1\right)
+			=
+			f\left(X^p\right)
+		$$
+		which means that $f$ is not invertible, thus $F_m$ and $F_a$ are not isomorphic.
+	\end{remark*}
 
 \end{document}
