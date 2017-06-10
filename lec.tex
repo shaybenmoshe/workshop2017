@@ -28,6 +28,9 @@
 \ncmd{\mrm}[1]{\mathrm{#1}}
 \ncmd{\dd}[1]{\mrm{d}#1}
 
+\ncmd{\taylor}[2]{#1\left[\left[#2\right]\right]}
+\ncmd{\FGL}[1]{\mrm{FGL}\left(#1\right)}
+
 %\ncmd{\todo}[1]{}
 \ncmd{\todo}[1]{\textbf{TODO #1}}
 
@@ -42,7 +45,7 @@
 	
 	\begin{definition*}
 		Let $R$ be a ring.
-		A (commutative one-dimensional) \emph{formal group law} over $R$ is an element $F\left(x,y\right) \in R\left[\left[x\right]\right]$, such that:
+		A (commutative one-dimensional) \emph{formal group law} over $R$ is an element $F\left(x,y\right) \in \taylor{R}{x,y}$, such that:
 		\begin{enumerate}
 			\item $F\left(x,0\right) = x = F\left(0,x\right)$
 			\item $F\left(x,y\right)=F\left(y,x\right)$ (commutativity) \todo{Do we need commutative?}
@@ -59,21 +62,27 @@
 	\end{example*}
 
 	\begin{lemma*}
-		$p\left(x\right) \in R\left[\left[x\right]\right]$ is (multiplicatively) invertible if and only if $p\left(0\right) \in R$ is invertible.
+		$p\left(x\right) \in \taylor{R}{x}$ is (multiplicatively) invertible if and only if $p\left(0\right) \in R$ is invertible.
 	\end{lemma*}
 	\begin{proof}
-		Let $p\left(x\right) = \sum a_n x^n$, and assume $q\left(x\right) = \sum b_n x^n \in R\left[\left[x\right]\right]$ is an inverse to $p$, i.e. $pq = 1$. 
+		Let $p\left(x\right) = \sum a_n x^n$, and assume $q\left(x\right) = \sum b_n x^n \in \taylor{R}{x}$ is an inverse to $p$, i.e. $pq = 1$. 
 		By comparing coefficients it follows that $a_0 b_0 = 1$ (so the first part follows), and $\sum_{k=0}^n a_k b_{n-k} = 0$.
 		If $a_0$ is invertible then we can find a suitable $q$, by defining $b_0 = a_0^{-1}$, and $b_n = - a_0^{-1} \left(\sum_{k=1}^n a_k b_{n-k}\right)$ (so the second part follows).
 	\end{proof}
 
 	\begin{definition*}
-		An \emph{homomorphism} from $F$ to $G$, two formal group laws over $R$, is a $f \in R\left[\left[x\right]\right]$, such that:
+		An \emph{homomorphism} from $F$ to $G$, two formal group laws over $R$, is a $f \in \taylor{R}{x}$, such that:
 		\begin{enumerate}
 			\item $f\left(0\right) = 0$
 			\item $f\left(F\left(x,y\right)\right) = G\left(f\left(x\right),f\left(y\right)\right)$
 		\end{enumerate}
 	\end{definition*}
+
+	\begin{definition*}
+		The definition of a homomorphism between formal group laws, turns the collection of formal group laws over a ring into a category, denoted $\FGL R$.
+	\end{definition*}
+
+	\todo{Should I mention the fact that there is a fully faithful functor $\FGL{R} \to \mrm{Grp}$? (actually this is the way we define the homomorphisms)}
 
 	\begin{claim*}
 		$f: F \to G$ is (compositionally) invertible (i.e. an isomorphism) if and only if $f'\left(0\right)$.
@@ -90,7 +99,7 @@
 
 	\begin{example*}
 		The multiplicative formal group law is strictly isomorphic to the additive formal group law,
-		by $f\left(x\right) = u^{-1} \log \left(1+ux\right) = \sum_{k=1}^{\infty} \frac{\left(-u\right)^{k-1} x^k}{k}$:
+		by $f\left(x\right) = u^{-1} \log \left(1+ux\right) = \sum_{n=1}^{\infty} \frac{\left(-u\right)^{n-1} x^n}{n}$:
 		\begin{align*}
 			f\left(F_m\left(x,y\right)\right)
 			&= u^{-1} \log \left(1+u F_m\left(x,y\right)\right)\\
@@ -139,7 +148,7 @@
 		\end{align*}
 		it follows that $j c_{ij} = 0$, and since each $0 \neq j \in \mathbb{Z}$ is invertible, $c_{ij} = 0, j > 0$, which finishes the proof.
 		Indeed, by associativity,
-		$F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,z\right)\right)$, differentiating w.r.t $z$ at $z=0$ we get,
+		$F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,z\right)\right)$, differentiating w.r.t. $z$ at $z=0$ we get,
 		$
 			F_2\left(F\left(x,y\right),0\right)
 			= F_2\left(x,y\right) F_2\left(y,0\right)
@@ -151,34 +160,87 @@
 		The above theorem is not true over arbitrary rings.
 		
 		To see this, we define a notion, that will lead us to the concept of height.
-		Let $F$ be a formal group law over a ring $R$. We define $\left[n\right]_F \left(X\right) \in R\left[\left[X\right]\right]$ by recursion:
+		Let $F$ be a formal group law over a ring $R$. We define $\left[n\right]_F \left(x\right) \in \taylor{R}{x}$ by recursion:
 		$$
-			\left[0\right]_F \left(X\right) = 0
+			\left[0\right]_F \left(x\right) = 0
 			\qquad
-			\left[n+1\right]_F \left(X\right) = F\left(X, \left[n\right]_F \left(X\right)\right)
+			\left[n+1\right]_F \left(x\right) = F\left(x, \left[n\right]_F \left(x\right)\right)
 		$$
 		Clearly, for $f: F \to G$ we get
 		$
-			f\left(\left[n\right]_F \left(X\right)\right)
+			f\left(\left[n\right]_F \left(x\right)\right)
 			=
-			\left[n\right]_G \left(f\left(X\right)\right)
+			\left[n\right]_G \left(f\left(x\right)\right)
 		$.
 		
-		For $F_a$ we have $\left[n\right]_{F_a} \left(X\right) = nX$,
-		and by induction for $F_m$ we have $\left[n\right]_{F_a} \left(X\right) = \left(1+X\right)^n - 1$.
+		For $F_a$ we have $\left[n\right]_{F_a} \left(x\right) = nx$,
+		and by induction for $F_m$ we have $\left[n\right]_{F_a} \left(x\right) = \left(1+x\right)^n - 1$.
 		Consider them over a field of characteristic $p$, and assume that $f: F_m \to F_a$ is an homomorphism then
 		$$
 			0
 			=
-			\left[p\right]_{F_a} \left(f\left(X\right)\right)
+			\left[p\right]_{F_a} \left(f\left(x\right)\right)
 			=
-			f\left(\left[p\right]_{F_m} \left(X\right)\right)
+			f\left(\left[p\right]_{F_m} \left(x\right)\right)
 			=
-			f\left(\left(1+X\right)^p-1\right)
+			f\left(\left(1+x\right)^p-1\right)
 			=
-			f\left(X^p\right)
+			f\left(x^p\right)
 		$$
 		which means that $f$ is not invertible, thus $F_m$ and $F_a$ are not isomorphic.
 	\end{remark*}
+
+	\begin{definition*}
+		Given an homomorphism $\varphi: R \to S$,
+		and a formal group law over $R$, $F\left(x,y\right) = \sum a_{ij} x^i y^j$,
+		we define the \emph{base change} by
+		$
+			\varphi^*\left(F\right)\left(x,y\right)
+			=
+			\sum \varphi\left(a_{ij}\right) x^i y^j
+		$.
+		In fact, that is a functor, defined similarly for morphisms.
+	\end{definition*}
+
+	\begin{theorem*}
+		There is a ring $L$, called the \emph{Lazard ring}, and a formal group law over it $F_\mrm{univ}$, called \emph{the universal formal group law},
+		such that for every ring $R$ the map
+		$$
+			\hom_\mrm{Ring}\left(L,R\right)
+			\to
+			\mrm{Ob}\left(\FGL{R}\right)
+			\qquad
+			\varphi \mapsto \varphi^*\left(F_\mrm{univ}\right)
+		$$
+		is one-to-one and onto.
+	\end{theorem*}
+
+	\begin{proof}
+		Look at the ring $\tilde{L} = \mbb{Z}\left[c_{ij}\right]$,
+		and
+		$
+			\tilde{F}_\mrm{univ}\left(x,y\right)
+			=
+			\sum c_{ij} x^i y^j
+			\in
+			\taylor{\tilde{L}}{x,y}
+		$.
+		There are various relations obtained from the definition of a formal group law, e.g. $c_{0j} = 0 = c_{i0}$.
+		Denote by $I$ the ideal generated by these relations, and define $L=\tilde{L}/I$,
+		and
+		$
+			F_\mrm{univ}\left(x,y\right)
+			=
+			\sum \left(c_{ij} + I\right) x^i y^j
+			\in
+			\taylor{L}{x,y}
+		$,
+		which satisfies the definition of a formal group law over $L$ by construction.
+		The map being one-to-one is trivial.
+		Given a formal group law $F\left(x,y\right) = \sum a_{ij} x^i y^j$,
+		we can define $\tilde{\varphi}: \tilde{L} \to R$ by $\tilde{\varphi}\left(c_{ij}\right) = a_{ij}$,
+		It is clear that if factors through $L$, to a map $\varphi: L \to R$, and that the base w.r.t $\varphi^*\left(F_\mrm{univ}\right) = F$,
+		therefore it is onto.
+	\end{proof}
 
 \end{document}
