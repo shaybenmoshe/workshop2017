@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6300 64-bit) (preloaded format=xelatex 2017.5.31)  10 JUN 2017 23:37
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6300 64-bit) (preloaded format=xelatex 2017.5.31)  13 JUN 2017 23:30
 entering extended mode
 **./lec.tex
 (lec.tex
@@ -590,16 +590,17 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 42.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+) (intro.tex [1
 
-] [2] (lec.aux) ) 
+])
+(char0.tex) (charp.tex [2]) (lazard.tex [3]) [4] (lec.aux) ) 
 Here is how much of TeX's memory you used:
- 11509 strings out of 427841
- 240173 string characters out of 3152544
- 326064 words of memory out of 3000000
- 15416 multiletter control sequences out of 15000+200000
- 10056 words of font info for 49 fonts, out of 3000000 for 9000
+ 11535 strings out of 427841
+ 240594 string characters out of 3152544
+ 329064 words of memory out of 3000000
+ 15425 multiletter control sequences out of 15000+200000
+ 11625 words of font info for 58 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 35i,10n,35p,10382b,233s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 35i,11n,35p,10382b,233s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on lec.pdf (2 pages).
+Output written on lec.pdf (4 pages).

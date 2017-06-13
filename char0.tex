@@ -1,0 +1,42 @@
+\section{Characteristic $0$}
+
+\begin{theorem*}
+	A formal group law over a $\mbb{Q}$-algebra has a logarithm.
+\end{theorem*}
+
+\begin{proof}
+	Let $F$ be such a formal group law, and denote $F_2 = \frac{\partial F}{\partial y}$.
+	Since $F\left(x,y\right) = x+y+\cdots$, we know that $F_2\left(0,0\right) = 1$, thus $F_2\left(t,0\right)$ is (multiplicatively) invertible.
+	Since each $0 \neq n \in \mathbb{Z}$ is invertible, we can define the following:
+	$$ f\left(x\right) = \int_0^x \frac{\dd{t}}{F_2\left(t,0\right)} $$
+	We claim that it is a logarithm.
+	We already know that $f'\left(0\right) = \frac{1}{F_2\left(0,0\right)} = 1$.
+	We need to prove that
+	$f\left(F\left(x,y\right)\right) = F_a\left(f\left(x\right),f\left(y\right)\right)$,
+	or equivalently, that
+	$w\left(x,y\right) = f\left(F\left(x,y\right)\right) - f\left(x\right) - f\left(y\right)$ vanishes.
+	Denote the coefficients by $w\left(x,y\right) = \sum c_{ij} x^i y^j$.
+	First, note that
+	$
+		w\left(x,0\right)
+		= f\left(F\left(x,0\right)\right) - f\left(x\right) - f\left(0\right)
+		= f\left(x\right) - f\left(x\right) - 0
+		= 0
+	$
+	and it follows that $c_{i0} = 0$.
+	If we prove that
+	\begin{align*}
+		0
+		&= \frac{\partial w}{\partial y}\\
+		&= f'\left(F\left(x,y\right)\right) F_2\left(x,y\right) - f'\left(y\right)\\
+		&= \frac{1}{F_2\left(F\left(x,y\right),0\right)} F_2\left(x,y\right) - \frac{1}{F_2\left(y,0\right)}
+	\end{align*}
+	it follows that $j c_{ij} = 0$, and since each $0 \neq j \in \mathbb{Z}$ is invertible, $c_{ij} = 0, j > 0$, which finishes the proof.
+	Indeed, by associativity,
+	$F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,z\right)\right)$, differentiating w.r.t. $z$ at $z=0$ we get,
+	$
+		F_2\left(F\left(x,y\right),0\right)
+		= F_2\left(x,y\right) F_2\left(y,0\right)
+	$
+	and the result follows.
+\end{proof}

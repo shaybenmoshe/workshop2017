@@ -1,0 +1,148 @@
+\section{Characteristic $p$}
+
+\begin{remark*}
+	The above theorem is not true over arbitrary rings.
+	
+	To see this, we define a notion, that will lead us to the concept of height.
+	Let $F$ be a formal group law over a ring $R$. We define $\left[n\right]_F \left(x\right) \in \taylor{R}{x}$ by recursion:
+	$$
+		\left[0\right]_F \left(x\right) = 0
+		\qquad
+		\left[n+1\right]_F \left(x\right) = F\left(x, \left[n\right]_F \left(x\right)\right)
+	$$
+	Clearly, for $f: F \to G$ we get
+	$
+		f\left(\left[n\right]_F \left(x\right)\right)
+		=
+		\left[n\right]_G \left(f\left(x\right)\right)
+	$.
+	If no confusion will arise, we will denote $\left[n\right] = \left[n\right]_F\left(0\right)$.
+	
+	For $F_a$ we have $\left[n\right]_{F_a} \left(x\right) = nx$,
+	and by induction for $F_m$ we have $\left[n\right]_{F_a} \left(x\right) = \left(1+x\right)^n - 1$.
+	Consider them over a field of characteristic $p$, and assume that $f: F_m \to F_a$ is an homomorphism then
+	$$
+		0
+		=
+		\left[p\right]_{F_a} \left(f\left(x\right)\right)
+		=
+		f\left(\left[p\right]_{F_m} \left(x\right)\right)
+		=
+		f\left(\left(1+x\right)^p-1\right)
+		=
+		f\left(x^p\right)
+	$$
+	which means that $f$ is not invertible, thus $F_m$ and $F_a$ are not isomorphic.
+\end{remark*}
+
+\begin{claim*}
+	For all $n$, $\left[n\right]_F$ is an endomorphism of $F$.
+	\todo{Comm. is used here}
+\end{claim*}
+
+\begin{proof}
+	It is trivial by definition that $\left[n\right]\left(0\right)=0$.
+	The addition by induction. For $n=0$ trivial.
+	Now:
+	\begin{align*}
+		\left[n\right]\left(F\left(x,y\right)\right)
+		&= F\left(
+			F\left(x,y\right),
+			\left[n-1\right]\left(F\left(x,y\right)\right)
+		\right)\\
+		&= F\left(
+			F\left(y,x\right),
+			F\left(\left[n-1\right]\left(x\right),\left[n-1\right]\left(y\right)\right)
+		\right)\\
+		&= F\left(
+			y,
+			F\left(
+				x,
+				F\left(\left[n-1\right]\left(x\right),\left[n-1\right]\left(y\right)\right)
+			\right)
+		\right)\\
+		&= F\left(
+			y,
+			F\left(
+				\left[n\right]\left(x\right)
+				,\left[n-1\right]\left(y\right)
+			\right)
+		\right)\\
+		&= F\left(
+			y,
+			F\left(
+				\left[n-1\right]\left(y\right),
+				\left[n\right]\left(x\right)
+			\right)
+		\right)\\
+		&= F\left(
+			\left[n\right]\left(y\right),
+			\left[n\right]\left(x\right)
+		\right)\\
+		&= F\left(
+			\left[n\right]\left(x\right),
+			\left[n\right]\left(y\right)
+		\right)
+	\end{align*}
+\end{proof}
+
+In what follows in this section, $R$ is an $\mbb{F}_p$-algebra.
+
+\begin{lemma*}
+	Let $F,G$ be formal group laws over $F$, and $f: F \to G$ non-trivial.
+	Then $f\left(x\right) = g\left(x^{p^n}\right)$ for some $n$ and $g\in \taylor{R}{x}$ with $g'\left(0\right) \neq 0$, and in particular the leading term of $f$ is $ax^{p^n}$.
+\end{lemma*}
+
+\begin{proof}
+	If $f'\left(0\right) \neq 0$, we are done.
+	Otherwise, we will find a formal group law $\tilde{F}$, and $\tilde{f}: \tilde{F} \to G$, such that $f\left(x\right) = \tilde{f}\left(x^p\right)$. Since $f$ is non-trivial, and the least non-zero degree is lowered by this process, this process must terminate after a finite amount of stages.
+	So suppose $f'\left(0\right) = 0$.
+	
+	First we claim that $f'\left(x\right) = 0$.
+	Deriving $f\left(F\left(x,y\right)\right) = F\left(f\left(x\right),f\left(y\right)\right)$ by $y$ and setting $y=0$, we get
+	$
+		f'\left(F\left(x,0\right)\right) F_2\left(x,0\right)
+		= F_2\left(f\left(x\right),f\left(0\right)\right) f'\left(0\right)
+	$
+	remembering that $F\left(x,0\right) = x, F_2\left(x,0\right) = 1, f'\left(0\right) = 0$,
+	we conclude that $f'\left(x\right) = 0$.
+	Write $f\left(x\right) = \sum a_n x^n$,
+	by $f'\left(x\right) = 0$, $a_n = 0$ for all $p \nmid n$,
+	therefore $f\left(x\right) = \tilde{f}\left(x^p\right)$.
+	
+	Denote by $\varphi: R \to R$ the Frobenius endomorphism $\varphi_i\left(x\right) = x^p$.
+	Define $\tilde{F} = \varphi^*\left(F\right)$.
+	It follows that
+	$
+		\tilde{f}\left(\tilde{F}\left(x^p, y^p\right)\right)
+		= \tilde{f}\left(F\left(x, y\right)^p\right)
+		= f\left(F\left(x, y\right)\right)
+		= G\left(f\left(x\right),f\left(y\right)\right)
+		= G\left(\tilde{f}\left(x^p\right),\tilde{f}\left(y^p\right)\right)
+	$
+	i.e. that $\tilde{f}: \tilde{F} \to G$ is the desired homomorphism.
+	\todo{How do we remove the $^p$? I think it follows if we don't have nilpotents..}
+\end{proof}
+
+\begin{definition*}
+	The \emph{height} of a formal group law $F$ over $R$ is defined as follows:
+	if $\left[p\right]_F = 0$, the height is $\infty$,
+	otherwise it is the unique $n \in \mbb{N}$ such that $\left[p\right]_F\left(x\right) = g\left(x^{p^n}\right)$ with $g'\left(0\right) \neq 0$.
+\end{definition*}
+
+\begin{lemma*}
+	The height is an isomorphism invariant.
+\end{lemma*}
+
+\begin{proof}
+	Let $f: F \to G$ be an isomorphism.
+	We've seen that in that case
+	$
+		f\left(\left[n\right]_F \left(x\right)\right)
+		=
+		\left[n\right]_G \left(f\left(x\right)\right)
+	$.
+	Since $f$ is an isomorphism, $f'\left(0\right)$ is a unit, the least non-zero degree is conserved and the result follows.
+\end{proof}
+
+\todo{Existence for each height over a field, uniqueness over an algebraically closed field.}

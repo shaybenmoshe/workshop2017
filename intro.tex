@@ -1,0 +1,75 @@
+\section{Introduction}
+
+(All rings are commutative with unit.)
+
+\begin{definition*}
+	Let $R$ be a ring.
+	A (commutative one-dimensional) \emph{formal group law} over $R$ is an element $F\left(x,y\right) \in \taylor{R}{x,y}$, such that:
+	\begin{enumerate}
+		\item $F\left(x,0\right) = x = F\left(0,x\right)$
+		\item $F\left(x,y\right)=F\left(y,x\right)$ (commutativity) \todo{Do we need commutative?}
+		\item $F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,x\right)\right)$ (associativity)
+	\end{enumerate}
+\end{definition*}
+
+\begin{example*}
+	The additive formal group law, $F_a\left(x,y\right) = x+y$.
+\end{example*}
+
+\begin{example*}
+	The multiplicative formal group law, $F_m\left(x,y\right) = x+y+uxy$ for some unit $u\in R$, and specifically $F_m\left(x,y\right) = x+y+xy$.
+\end{example*}
+
+\begin{lemma*}
+	$p\left(x\right) \in \taylor{R}{x}$ is (multiplicatively) invertible if and only if $p\left(0\right) \in R$ is invertible.
+\end{lemma*}
+\begin{proof}
+	Let $p\left(x\right) = \sum a_n x^n$, and assume $q\left(x\right) = \sum b_n x^n \in \taylor{R}{x}$ is an inverse to $p$, i.e. $pq = 1$. 
+	By comparing coefficients it follows that $a_0 b_0 = 1$ (so the first part follows), and $\sum_{k=0}^n a_k b_{n-k} = 0$.
+	If $a_0$ is invertible then we can find a suitable $q$, by defining $b_0 = a_0^{-1}$, and $b_n = - a_0^{-1} \left(\sum_{k=1}^n a_k b_{n-k}\right)$ (so the second part follows).
+\end{proof}
+
+\begin{definition*}
+	An \emph{homomorphism} from $F$ to $G$, two formal group laws over $R$, is a $f \in \taylor{R}{x}$, such that:
+	\begin{enumerate}
+		\item $f\left(0\right) = 0$
+		\item $f\left(F\left(x,y\right)\right) = G\left(f\left(x\right),f\left(y\right)\right)$
+	\end{enumerate}
+\end{definition*}
+
+\begin{definition*}
+	The definition of a homomorphism between formal group laws, turns the collection of formal group laws over a ring into a category, denoted $\FGL R$.
+\end{definition*}
+
+\todo{Should I mention the fact that there is a fully faithful functor $\FGL{R} \to \mrm{Grp}$? (actually this is the way we define the homomorphisms)}
+
+\begin{claim*}
+	$f: F \to G$ is (compositionally) invertible (i.e. an isomorphism) if and only if $f'\left(0\right)$.
+\end{claim*}
+
+\begin{proof}
+	It is easy to see the first implication.
+	If $f'\left(0\right) = 0$, we can show explicitly that there exists a unique $g$ such that $g\left(f\left(x\right)\right) = x$, and $g'\left(0\right) = \left(f'\left(0\right)\right)^{-1}$. From the very same claim, it follows that there exists an $h$ such that $h\left(g\left(x\right)\right) = x$, it follows that $h\left(x\right) = h\left(g\left(f\left(x\right)\right)\right) = f\left(x\right)$.
+\end{proof}
+
+\begin{definition*}
+	$f: F \to G$ is a \emph{strict isomorphism} if $f'\left(0\right)=1$.
+\end{definition*}
+
+\begin{example*}
+	The multiplicative formal group law is strictly isomorphic to the additive formal group law,
+	by $f\left(x\right) = u^{-1} \log \left(1+ux\right) = \sum_{n=1}^{\infty} \frac{\left(-u\right)^{n-1} x^n}{n}$:
+	\begin{align*}
+		f\left(F_m\left(x,y\right)\right)
+		&= u^{-1} \log \left(1+u F_m\left(x,y\right)\right)\\
+		&= u^{-1} \log \left(1+ux+uy+u^2 xy\right)\\
+		&= u^{-1} \log \left(1+ux\right)\left(1+uy\right)\\
+		&= u^{-1} \log \left(1+ux\right) + \log \left(1+uy\right)\\
+		&= F_a\left(f\left(x\right), f\left(y\right)\right)
+	\end{align*}
+	(Note that we don't need the $u^{-1}$ to get an isomorphism, but we do need it to get a strict isomorphism.)
+\end{example*}
+
+\begin{definition*}
+	A strict isomorphism from $F$ to $F_a$ is called a \emph{logarithm}.
+\end{definition*}
