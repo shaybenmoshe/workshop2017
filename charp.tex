@@ -37,10 +37,10 @@
 
 \begin{claim*}
 	For all $n$, $\left[n\right]_F$ is an endomorphism of $F$.
-	\todo{Comm. is used here}
 \end{claim*}
 
 \begin{proof}
+	Follows easily from associativity and commutativity by induction.
 	It is trivial by definition that $\left[n\right]\left(0\right)=0$.
 	The addition by induction. For $n=0$ trivial.
 	Now:
@@ -113,15 +113,20 @@ In what follows in this section, $R$ is an $\mbb{F}_p$-algebra.
 	Denote by $\varphi: R \to R$ the Frobenius endomorphism $\varphi_i\left(x\right) = x^p$.
 	Define $\tilde{F} = \varphi^*\left(F\right)$.
 	It follows that
-	$
+	$$
 		\tilde{f}\left(\tilde{F}\left(x^p, y^p\right)\right)
 		= \tilde{f}\left(F\left(x, y\right)^p\right)
 		= f\left(F\left(x, y\right)\right)
 		= G\left(f\left(x\right),f\left(y\right)\right)
 		= G\left(\tilde{f}\left(x^p\right),\tilde{f}\left(y^p\right)\right)
+	$$
+	thus
 	$
-	i.e. that $\tilde{f}: \tilde{F} \to G$ is the desired homomorphism.
-	\todo{How do we remove the $^p$? I think it follows if we don't have nilpotents..}
+		\tilde{f}\left(\tilde{F}\left(x, y\right)\right)
+		= G\left(\tilde{f}\left(x\right),\tilde{f}\left(y\right)\right)
+	$
+	(since these are just formal power series, so just rename the variables),
+	and it follows that $\tilde{f}: \tilde{F} \to G$ is the desired homomorphism.
 \end{proof}
 
 \begin{definition*}

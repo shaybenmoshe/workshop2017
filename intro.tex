@@ -1,15 +1,14 @@
 \section{Introduction}
 
-(All rings are commutative with unit.)
-
 \begin{definition*}
-	Let $R$ be a ring.
+	Let $R$ be a commutative ring with unit.
 	A (commutative one-dimensional) \emph{formal group law} over $R$ is an element $F\left(x,y\right) \in \taylor{R}{x,y}$, such that:
 	\begin{enumerate}
 		\item $F\left(x,0\right) = x = F\left(0,x\right)$
-		\item $F\left(x,y\right)=F\left(y,x\right)$ (commutativity) \todo{Do we need commutative?}
 		\item $F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,x\right)\right)$ (associativity)
+		\item $F\left(x,y\right)=F\left(y,x\right)$ (commutativity)
 	\end{enumerate}
+	We will denote the \emph{set of formal group laws} over a ring $R$ by $\FGL R$.
 \end{definition*}
 
 \begin{example*}
@@ -29,6 +28,15 @@
 	If $a_0$ is invertible then we can find a suitable $q$, by defining $b_0 = a_0^{-1}$, and $b_n = - a_0^{-1} \left(\sum_{k=1}^n a_k b_{n-k}\right)$ (so the second part follows).
 \end{proof}
 
+\begin{lemma*}
+	There exists an element $\iota\left(x\right) \in \taylor{R}{x}$ called the \emph{inverse} such that
+	$
+		F\left(x,\iota\left(x\right)\right)
+		= 0
+		= F\left(\iota\left(x\right),x\right)
+	$.
+\end{lemma*}
+
 \begin{definition*}
 	An \emph{homomorphism} from $F$ to $G$, two formal group laws over $R$, is a $f \in \taylor{R}{x}$, such that:
 	\begin{enumerate}
@@ -38,10 +46,8 @@
 \end{definition*}
 
 \begin{definition*}
-	The definition of a homomorphism between formal group laws, turns the collection of formal group laws over a ring into a category, denoted $\FGL R$.
+	The definition of a homomorphism between formal group laws, turns the collection of formal group laws over a ring into a category.
 \end{definition*}
-
-\todo{Should I mention the fact that there is a fully faithful functor $\FGL{R} \to \mrm{Grp}$? (actually this is the way we define the homomorphisms)}
 
 \begin{claim*}
 	$f: F \to G$ is (compositionally) invertible (i.e. an isomorphism) if and only if $f'\left(0\right)$.
@@ -73,3 +79,13 @@
 \begin{definition*}
 	A strict isomorphism from $F$ to $F_a$ is called a \emph{logarithm}.
 \end{definition*}
+
+\begin{claim*}
+	Let $f \in \taylor{R}{x}$ be such that $f\left(0\right) = 0, f'\left(0\right) = 1$ (i.e. $f\left(x\right) = x + \cdots$),
+	then there is a unique formal group law $F_f$ over $R$ whose logarithm is $f$.
+\end{claim*}
+
+\begin{proof}
+	The condition of being a logarithm means that $f\left(F_f\left(x,y\right)\right) = f\left(x\right) + f\left(y\right)$, or equivalently $F_f\left(x,y\right) = f^{-1}\left(f\left(x\right) + f\left(y\right)\right)$.
+	The uniqueness is thus trivial, and being a formal group law is also easy to check.
+\end{proof}
