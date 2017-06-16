@@ -4,7 +4,7 @@
 	The above theorem is not true over arbitrary rings.
 	
 	To see this, we define a notion, that will lead us to the concept of height.
-	Let $F$ be a formal group law over a ring $R$. We define $\left[n\right]_F \left(x\right) \in \taylor{R}{x}$ by recursion:
+	Let $F$ be a formal group law over a ring $R$. We define $\left[n\right]_F \left(x\right) \in \taylor{R}{x}$, called the \emph{$n$-series} of $F$ recursively:
 	$$
 		\left[0\right]_F \left(x\right) = 0
 		\qquad
@@ -150,4 +150,10 @@ In what follows in this section, $R$ is an $\mbb{F}_p$-algebra.
 	Since $f$ is an isomorphism, $f'\left(0\right)$ is a unit, the least non-zero degree is conserved and the result follows.
 \end{proof}
 
-\todo{Existence for each height over a field, uniqueness over an algebraically closed field.}
+\begin{theorem*}
+	For each $1 \leq n \leq \infty$ there exists a formal group law $F_n$ of height $n$.
+\end{theorem*}
+
+\begin{theorem*}
+	Over an algebraically closed field, there is a unique formal group law of each height $1 \leq n \leq \infty$.
+\end{theorem*}
