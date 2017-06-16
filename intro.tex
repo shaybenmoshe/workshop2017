@@ -46,7 +46,7 @@
 \end{definition*}
 
 \begin{definition*}
-	The definition of a homomorphism between formal group laws, turns the collection of formal group laws over a ring into a category.
+	The definition of an homomorphism between formal group laws, turns the collection of formal group laws over a ring into a category.
 \end{definition*}
 
 \begin{claim*}
@@ -89,3 +89,15 @@
 	The condition of being a logarithm means that $f\left(F_f\left(x,y\right)\right) = f\left(x\right) + f\left(y\right)$, or equivalently $F_f\left(x,y\right) = f^{-1}\left(f\left(x\right) + f\left(y\right)\right)$.
 	The uniqueness is thus trivial, and being a formal group law is also easy to check.
 \end{proof}
+
+\begin{definition*}
+	Given an homomorphism $\varphi: R \to S$,
+	and a formal group law over $R$, $F\left(x,y\right) = \sum a_{ij} x^i y^j$,
+	we define the \emph{base change} by
+	$
+	\varphi^*\left(F\right)\left(x,y\right)
+	=
+	\sum \varphi\left(a_{ij}\right) x^i y^j
+	$.
+	In fact, that is a functor, defined similarly for homomorphisms of formal group laws.
+\end{definition*}
