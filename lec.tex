@@ -8,12 +8,13 @@
 \usepackage{polyglossia}
 \setdefaultlanguage{english}
 
+\usepackage[backend=biber, babel=hyphen, style=authortitle]{biblatex}
+
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0.6em}
 
 \newtheorem*{theorem*}{Theorem}
 \newtheorem*{lemma*}{Lemma}
-\newtheorem*{claim*}{Claim}
 
 \theoremstyle{definition}
 \newtheorem*{definition*}{Definition}
@@ -49,5 +50,6 @@
 	\input{char0.tex}
 	\input{charp.tex}
 	\input{lazard.tex}
+	\input{bib.tex}
 
 \end{document}

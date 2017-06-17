@@ -8,7 +8,19 @@
 		\item $F\left(F\left(x,y\right),z\right)=F\left(x,F\left(y,x\right)\right)$ (associativity)
 		\item $F\left(x,y\right)=F\left(y,x\right)$ (commutativity)
 	\end{enumerate}
-	We will denote the \emph{set of formal group laws} over a ring $R$ by $\FGL R$.
+	We denote the \emph{set of formal group laws} over a ring $R$ by $\FGL R$.
+\end{definition*}
+
+\begin{definition*}
+	Given an homomorphism $\varphi: R \to S$, and $F \in \FGL{R}$
+	given by, $F\left(x,y\right) = \sum a_{ij} x^i y^j$,
+	we define
+	$
+		\varphi_*\left(F\right)\left(x,y\right)
+		=
+		\sum \varphi\left(a_{ij}\right) x^i y^j
+	$.
+	(This makes $\FGL{\bullet}: \mrm{Ring} \to \mrm{Set}$ into a functor.)
 \end{definition*}
 
 \begin{example*}
@@ -45,13 +57,14 @@
 	\end{enumerate}
 \end{definition*}
 
-\begin{definition*}
-	The definition of an homomorphism between formal group laws, turns the collection of formal group laws over a ring into a category.
-\end{definition*}
+\begin{remark*}
+	The definition of an homomorphism between formal group laws, turns the collection of formal group laws over a ring into a category,
+	Also, given a morphism of rings $\varphi$, the map $\varphi_*$ is actually a functor between the corresponding categories.
+\end{remark*}
 
-\begin{claim*}
-	$f: F \to G$ is (compositionally) invertible (i.e. an isomorphism) if and only if $f'\left(0\right)$.
-\end{claim*}
+\begin{lemma*}
+	$f: F \to G$ is (compositionally) invertible (i.e. an isomorphism) if and only if $f'\left(0\right)$ is invertible.
+\end{lemma*}
 
 \begin{proof}
 	It is easy to see the first implication.
@@ -80,24 +93,12 @@
 	A strict isomorphism from $F$ to $F_a$ is called a \emph{logarithm}.
 \end{definition*}
 
-\begin{claim*}
+\begin{lemma*}
 	Let $f \in \taylor{R}{x}$ be such that $f\left(0\right) = 0, f'\left(0\right) = 1$ (i.e. $f\left(x\right) = x + \cdots$),
 	then there is a unique formal group law $F_f$ over $R$ whose logarithm is $f$.
-\end{claim*}
+\end{lemma*}
 
 \begin{proof}
 	The condition of being a logarithm means that $f\left(F_f\left(x,y\right)\right) = f\left(x\right) + f\left(y\right)$, or equivalently $F_f\left(x,y\right) = f^{-1}\left(f\left(x\right) + f\left(y\right)\right)$.
 	The uniqueness is thus trivial, and being a formal group law is also easy to check.
 \end{proof}
-
-\begin{definition*}
-	Given an homomorphism $\varphi: R \to S$,
-	and a formal group law over $R$, $F\left(x,y\right) = \sum a_{ij} x^i y^j$,
-	we define the \emph{base change} by
-	$
-	\varphi^*\left(F\right)\left(x,y\right)
-	=
-	\sum \varphi\left(a_{ij}\right) x^i y^j
-	$.
-	In fact, that is a functor, defined similarly for homomorphisms of formal group laws.
-\end{definition*}

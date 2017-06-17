@@ -1,12 +1,14 @@
 \section{Motivation}
 
 Let $k$ be an algebraically closed field.
-We can look at $k^*$, it has the structure of an algebraic group, given by a map
+We can look at $G_m = \spec{k\left[x,x^{-1}\right]} \cong k^*$,
+where the elements are $\mfk{m}_a = \left(x-a\right)$ for $a \in k^*$,
+it has the structure of an algebraic group, given by a map
 $
-	k^* \times k^* \to k^*,\ 
-	\left(a,b\right) \mapsto ab
+	G_m \times G_m \to G_m,\ 
+	\left(\mfk{m}_a,\mfk{m}_b\right) \mapsto \mfk{m}_{ab}
 $.
-We know that $k^* = \spec{k\left[x,x^{-1}\right]}$, by the identification which sends $a \in k^*$ to $\mfk{m}_a = \left(x-a\right)$ (which evaluate an element at $a$). Under the (contravariant) spectrum functor, the multiplication map comes from a map
+Under the (contravariant) spectrum functor, it comes from
 $
 	k\left[z,z^{-1}\right]
 	\to
@@ -19,7 +21,7 @@ $.
 In much the same way that the Lie algebra corresponding to a Lie group, studies a neighborhood of the identity, up to first order,
 we will study functions near the identity up to any order.
 In our case, the identity is $\mfk{m}_1$.
-Thus, to study functions on $k^*$ up to $n$-th order, we should look at $k\left[x,x^{-1}\right] / \mfk{m}_1^n$, and to study them up to any order, we should take the completion by this ideal.
+Thus, to study functions on $G_m$ up to $n$-th order, we should look at $k\left[x,x^{-1}\right] / \mfk{m}_1^n$, and to study them up to any order, we should take the limit, i.e. the completion by this ideal.
 
 To compute the completion, it is convenient to change variables $s = x-1$, so that $k\left[x,x^{-1}\right] = k\left[s,\left(s+1\right)^{-1}\right]$ and $\mfk{m}_1 = \left(s\right)$, thus completion is $\taylor{k}{s}$.
 Also the multiplication after change of variables and completion becomes
@@ -30,8 +32,7 @@ $
 	t+1 \mapsto \left(s+1\right)\left(u+1\right)
 $
 which is the same as $t \mapsto su+s+u$.
-This map is specified by where it maps $t \in \taylor{k}{t}$,
-that is to say, near the identity the multiplication is specified by an element of $\taylor{k}{s,u}$ which is $su+s+u$, called the \emph{multiplicative formal group law}.
+So, near the identity, the multiplication is specified by an element of $\taylor{k}{s,u}$ which is $su+s+u$, called the \emph{multiplicative formal group law}.
 Note that $0$ is a neutral element, and that the law is associative and commutative (since the operation satisfied these properties to begin with.)
 
 In what follows, we axiomatize the resulting structure, similarly to the axiomatization of Lie algebras.

@@ -10,12 +10,14 @@
 	Since each $0 \neq n \in \mathbb{Z}$ is invertible, we can define the following:
 	$$ f\left(x\right) = \int_0^x \frac{\dd{t}}{F_2\left(t,0\right)} $$
 	We claim that it is a logarithm.
-	We already know that $f'\left(0\right) = \frac{1}{F_2\left(0,0\right)} = 1$.
-	We need to prove that
-	$f\left(F\left(x,y\right)\right) = F_a\left(f\left(x\right),f\left(y\right)\right)$,
-	or equivalently, that
-	$w\left(x,y\right) = f\left(F\left(x,y\right)\right) - f\left(x\right) - f\left(y\right)$ vanishes.
-	Denote the coefficients by $w\left(x,y\right) = \sum c_{ij} x^i y^j$.
+	We know that $f\left(0\right) = 0$ and $f'\left(0\right) = \frac{1}{F_2\left(0,0\right)} = 1$.
+	It is sufficient to prove that
+	$
+		w\left(x,y\right)
+		= f\left(F\left(x,y\right)\right) - f\left(x\right) - f\left(y\right)
+		= \sum c_{ij} x^i y^j
+	$
+	vanishes.
 	First, note that
 	$
 		w\left(x,0\right)

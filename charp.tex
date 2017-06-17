@@ -4,7 +4,7 @@
 	The theorem for characteristic 0 is not true over arbitrary rings.
 	
 	To see this, we define a notion, that will lead us to the concept of height.
-	Let $F$ be a formal group law over a ring $R$. We define $\left[n\right]_F \left(x\right) \in \taylor{R}{x}$, called the \emph{$n$-series} of $F$ recursively:
+	Let $F \in \FGL{R}$. We define $\left[n\right]_F \left(x\right) \in \taylor{R}{x}$, called the \emph{$n$-series} of $F$, recursively:
 	$$
 		\left[0\right]_F \left(x\right) = 0
 		\qquad
@@ -16,7 +16,6 @@
 		=
 		\left[n\right]_G \left(f\left(x\right)\right)
 	$.
-	If no confusion will arise, we will denote $\left[n\right] = \left[n\right]_F\left(0\right)$.
 	
 	For $F_a$ we have $\left[n\right]_{F_a} \left(x\right) = nx$,
 	and by induction for $F_m$ we have $\left[n\right]_{F_a} \left(x\right) = \left(1+x\right)^n - 1$.
@@ -35,12 +34,12 @@
 	which means that $f$ is not invertible, thus $F_m$ and $F_a$ are not isomorphic.
 \end{remark*}
 
-\begin{claim*}
+\begin{lemma*}
 	For all $n$, $\left[n\right]_F$ is an endomorphism of $F$.
-\end{claim*}
+\end{lemma*}
 
 \begin{proof}
-	Follows easily from associativity and commutativity by induction.
+	This amounts to understanding that $\left[n\right]_F\left(x\right)$ is like $nx$.
 	It is trivial by definition that $\left[n\right]\left(0\right)=0$.
 	The addition by induction. For $n=0$ trivial.
 	Now:
@@ -89,7 +88,7 @@
 In what follows in this section, $R$ is an $\mbb{F}_p$-algebra.
 
 \begin{lemma*}
-	Let $F,G$ be formal group laws over $F$, and $f: F \to G$ non-trivial.
+	Let $F,G \in \FGL{R}$, and $f: F \to G$ non-trivial.
 	Then $f\left(x\right) = g\left(x^{p^n}\right)$ for some $n$ and $g\in \taylor{R}{x}$ with $g'\left(0\right) \neq 0$, and in particular the leading term of $f$ is $ax^{p^n}$.
 \end{lemma*}
 
@@ -99,19 +98,19 @@ In what follows in this section, $R$ is an $\mbb{F}_p$-algebra.
 	So suppose $f'\left(0\right) = 0$.
 	
 	First we claim that $f'\left(x\right) = 0$.
-	Deriving $f\left(F\left(x,y\right)\right) = F\left(f\left(x\right),f\left(y\right)\right)$ by $y$ and setting $y=0$, we get
+	Deriving $f\left(F\left(x,y\right)\right) = G\left(f\left(x\right),f\left(y\right)\right)$ by $y$ and setting $y=0$, we get
 	$
 		f'\left(F\left(x,0\right)\right) F_2\left(x,0\right)
-		= F_2\left(f\left(x\right),f\left(0\right)\right) f'\left(0\right)
+		= G_2\left(f\left(x\right),f\left(0\right)\right) f'\left(0\right)
 	$
 	remembering that $F\left(x,0\right) = x, F_2\left(x,0\right) = 1, f'\left(0\right) = 0$,
 	we conclude that $f'\left(x\right) = 0$.
-	Write $f\left(x\right) = \sum a_n x^n$,
-	by $f'\left(x\right) = 0$, $a_n = 0$ for all $p \nmid n$,
-	therefore $f\left(x\right) = \tilde{f}\left(x^p\right)$.
+	Now, write $f\left(x\right) = \sum a_n x^n$,
+	from $f'\left(x\right) = 0$ it follows that $na_n = 0$ for all $n$, thus $a_n = 0$ for all $p \nmid n$.
+	So we can define $\tilde{f}$, by $f\left(x\right) = \tilde{f}\left(x^p\right)$.
 	
-	Denote by $\varphi: R \to R$ the Frobenius endomorphism $\varphi_i\left(x\right) = x^p$.
-	Define $\tilde{F} = \varphi^*\left(F\right)$.
+	Denote by $\varphi: R \to R$ the Frobenius endomorphism $\varphi\left(x\right) = x^p$.
+	Define $\tilde{F} = \varphi_*\left(F\right)$.
 	It follows that
 	$$
 		\tilde{f}\left(\tilde{F}\left(x^p, y^p\right)\right)
@@ -130,8 +129,8 @@ In what follows in this section, $R$ is an $\mbb{F}_p$-algebra.
 \end{proof}
 
 \begin{definition*}
-	The \emph{height} of a formal group law $F$ over $R$ is defined as follows:
-	if $\left[p\right]_F = 0$, the height is $\infty$,
+	The \emph{height} of $F \in \FGL{R}$ is defined as follows:
+	if $\left[p\right]_F\left(x\right) = 0$, the height is $\infty$,
 	otherwise it is the unique $n \in \mbb{N}$ such that $\left[p\right]_F\left(x\right) = g\left(x^{p^n}\right)$ with $g'\left(0\right) \neq 0$.
 \end{definition*}
 
